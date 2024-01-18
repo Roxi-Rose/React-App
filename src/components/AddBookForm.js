@@ -2,18 +2,21 @@ import React, { useState } from 'react'
 
 export default function Addbookform(props) {
     const [bookname, setbookname] = useState("");
-    const handleinput = (event)=> {
+    const handleInput = (event)=> {
         setbookname(event.target.value);
     }
-    const handleadd = (event) => {
+    const handleAdd = (event) => {
         event.preventDefault();
+        if (bookname.trim() === '') {
+          return; 
+        }
         props.form(bookname);
         setbookname("")
     }
   return (
     <div> 
-     <form onSubmit={handleadd}>
-     <input type= "text" value= {bookname} onChange={handleinput}/>
+     <form onSubmit={handleAdd}>
+     <input type= "text" value= {bookname} onChange={handleInput}/>
      <button>Add</button>
      </form>
     </div>
